@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Todo;
 
 class NewTodoController extends Controller
 {
@@ -13,7 +14,8 @@ class NewTodoController extends Controller
      */
     public function index()
     {
-        return 'hello';
+        $data = Todo::all();
+        return view('todo.index', ['data' => $data]);
     }
 
     /**
@@ -23,7 +25,7 @@ class NewTodoController extends Controller
      */
     public function create()
     {
-        return view('form');
+        return view('todo.form');
     }
 
     /**
@@ -34,7 +36,9 @@ class NewTodoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Todo::create(['title' => $request->title]);
+
+        return redirect('/todo/create');
     }
 
     /**
@@ -68,7 +72,12 @@ class NewTodoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = Todo::findOrfail($id);
+        $data->update([
+            'completed' => 1
+        ]);
+
+        return redirect('/todo');
     }
 
     /**
@@ -79,6 +88,9 @@ class NewTodoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = Todo::findOrFail($id);
+        $data->delete();
+
+        return redirect('/todo');
     }
 }

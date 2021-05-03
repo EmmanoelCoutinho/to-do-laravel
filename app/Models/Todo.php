@@ -3,10 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
 class Todo extends Model
 {
-    use HasFactory;
-    protected $fillable = ['title', 'completed'];
+    use SoftDeletes;
+    protected $fillable = ['title', 'completed', 'deleted_at'];
 }

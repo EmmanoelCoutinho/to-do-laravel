@@ -66,12 +66,12 @@
             <form action="{{ route('todo.destroy', $data->id)}}" method="POST">
                 {!! csrf_field() !!}
                 <input type="hidden" name="_method" value="DELETE">
-                <input type="submit" value="Excluir" class="btn btn-default">
+                <input type="submit" value="Excluir" class="btn btn-xs btn-danger btn-default">
             </form>
             <form action="{{ route('todo.update', $data->id)}}" method="POST">
                 {!! csrf_field() !!}
                 <input type="hidden" name="_method" value="PUT">
-                <input type="submit" value="Concluir" class="btn btn-xs btn-default">
+                <input type="submit" value="Concluir" class="btn btn-xs btn-success btn-default">
             </form>
         </div>
     </div>
